@@ -1,0 +1,84 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 26 Sep, 2016, 3:05:09 PM
+    Author     : ABS-Brother
+*/
+
+body {
+    
+    padding-bottom: 20px;
+}
+footer{
+    padding-bottom: 0px;
+    position: fixed;
+}
+ @font-face{
+                font-family:precious;
+                src: url('asset/Precious font/Precious.ttf') format("truetype")
+                }
+/*-----------------------------dashboard-------------------------*/
+.deshboard-service {
+  padding: 15px 10px;
+  text-align: left;
+  position: relative;
+  border: 1px solid rgba(14, 14, 14, 0.3);
+  margin: 20px 0;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.deshboard-service:hover {
+  border-color: #eb2c33;
+  background-color: #eb2c33;
+}
+.deshboard-service:hover i {
+  color: #eb2c33;
+  background-color: #ffffff;
+  border-color: #ffffff;
+}
+.deshboard-service:hover h3 {
+  color: #ffffff;
+}
+.deshboard-service:hover p {
+  color: #eaeaea;
+}
+.deshboard-service p {
+  margin: 0;
+  color: #aaa;
+}
+.deshboard-service a {
+  position: absolute;
+  z-index: 11;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.deshboard-service h3 {
+  margin: 5px 0 5px;
+}
+.deshboard-service i {
+  color: #ffffff;
+  text-align: center;
+  line-height: 80px;
+  font-size: 42px;
+  margin: auto;
+  display: block;
+  width: 80px;
+  height: 80px;
+  border-radius: 70px;
+  border: 1px solid #eb2c33;
+  background-color: #eb2c33;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+

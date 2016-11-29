@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://java.sun.com/jsf/core"
+      xmlns:pt="http://java.sun.com/jsf/passthrough"
+      xmlns:compsite="http://java.sun.com/jsf/composite">
+    <h:head>
+       
+        <link href="../../asset/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+    </h:head>
+    <h:body>
+        <compsite:interface>
+            <compsite:attribute name="nameValue" ></compsite:attribute>
+            <compsite:attribute name="feedbackValue" ></compsite:attribute>
+             <compsite:attribute name="buttonText" ></compsite:attribute>
+             <compsite:attribute name="buttonAction" method-signature="String action()" />
+        </compsite:interface>
+        <compsite:implementation>
+            <h:form>
+                <h:inputText pt:placeholder="Your Name" value="#{cc.attrs.nameValue}" class="form-control" required="true" requiredMessage="Please Enter Your Name">
+                    <c:validateLength minimum="3" maximum="50"/>
+                </h:inputText><br/>
+                <h:inputTextarea pt:placeholder="Enter Feedback" value="#{cc.attrs.feedbackValue}" class="form-control" required="true" requiredMessage="please Enter Feedback">
+                  <c:validateLength minimum="5" maximum="1900"/>
+                </h:inputTextarea><br/>
+                <h:commandButton action="#{cc.attrs.buttonAction}" class="btn btn-default" value="#{cc.attrs.buttonText}"/>
+            </h:form>
+        </compsite:implementation>
+    </h:body>
+</html>
+

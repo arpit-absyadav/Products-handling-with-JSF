@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pt="http://java.sun.com/jsf/passthrough">
+    <h:head>
+        <title>Category</title>
+        <link href="../asset/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <link href="../asset/fonts/font-awesome-4.6.3/css/font-awesome.css" rel="stylesheet" type="text/css"/>
+    </h:head>
+    <h:body>
+        <ui:include src="../template/common/top-header.xhtml"/>
+        
+        <div class="container">
+             <div class="col-md-3" style="padding-top:10%;">        
+                 <h:form>
+                 <h:outputText value="Select Category"></h:outputText>   
+                 <h:selectOneMenu pt:placeholder="Select One"  class="form-control" onchange="submit()" valueChangeListener="#{catByProd.valueChange}">
+                   <c:selectItems value="#{catByProd.categoryList}"/>
+                 </h:selectOneMenu>               
+                 
+                 </h:form>
+            </div>
+            <div class="col-md-9">
+                <h:form>
+                  <p:dataTable var="p" value="#{catByProd.prodList}" rows="10"
+                                paginator="true"
+                                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"                       
+                               
+                                 rowsPerPageTemplate="5,10,15"
+                                 style="width:100%">
+                      <p:column>
+                         <c:facet name="header">Product Id</c:facet>
+                         <h:outputText value="#{p.prodId}"/>
+                     </p:column>
+                       <p:column>
+                         <c:facet name="header">Product Name</c:facet>
+                         <h:outputText value="#{p.prodName}"/>
+                     </p:column>
+                     
+                     <p:column>
+                         <c:facet name="header">Product Category</c:facet>
+                         <h:outputText value="#{p.prodCategory}"/>
+                     </p:column>
+                      <p:column>
+                         <c:facet name="header">Product Category</c:facet>
+                         <h:outputText value="#{p.prodDescription}"/>
+                     </p:column>
+                      <p:column>
+                         <c:facet name="header">Product Category</c:facet>
+                         <h:outputText value="#{p.prodPrice}"/>
+                     </p:column>
+                  </p:dataTable>
+                </h:form>
+                
+            </div>
+           
+        </div>
+        
+        <ui:include src="../template/common/footer.xhtml"/>                    
+    </h:body>
+</html>
+
+
+                            

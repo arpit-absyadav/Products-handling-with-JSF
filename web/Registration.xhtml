@@ -1,0 +1,119 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:c="http://java.sun.com/jsf/core"
+          
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Registration</title>
+        <link href="asset/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <style>
+            .regform{width:60%;
+            }
+            @font-face{
+                font-family:precious;
+                src: url('asset/Precious font/Precious.ttf') format("truetype")
+                }
+             .reg{font-family: 'Precious',Copperplate Gothic Light;
+             color:#0818f3;}   
+        </style>
+    </h:head>
+    <h:body>
+         <c:view>
+        <ui:include src="template/common/top-header.xhtml"/> 
+        <div class="container">
+        <h:form>
+           
+            <table class="regform table-responsive table">
+                <tr>
+                    <td colspan="3"><br/>
+                        <h1 class="reg">
+                            <h:outputText value="Please Register Yourself"></h:outputText>
+                        </h1>
+                        
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <c:ajax event="keyup" render="errorName" execute="@this">
+                            <h:inputText pt:placeholder="First Name" id="fname" value="#{signUp.firstName}" 
+                                         validator="#{signUp.nameValidation}" 
+                                         class="form-control col-xs-6 col-md-6" >                            
+                            <c:validateRegex pattern="[A-Za-z]+"/>                            
+                        </h:inputText>
+                            <h:message for="fname" id="errorName" class="alert alert-warning"></h:message>
+                        </c:ajax>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h:inputText pt:placeholder="Last Name" value="#{signUp.lastName}"
+                                     class="form-control col-xs-6 col-md-6" 
+                                     validatorMessage="Last name Field can't be empty" >
+                            <c:validateRegex pattern="[A-Za-z]+"/>
+                            <c:validateLength maximum="10" minimum="3"/>
+                        </h:inputText>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        
+                        <h:inputText pt:placeholder="User Name" value="#{signUp.userName}" class="form-control col-xs-6 col-md-6" validatorMessage="UserName Field can't be empty" >
+                            <c:validateRegex pattern="[A-Za-z0-9]+"/>
+                            <c:validateLength maximum="20" minimum="3"/>
+                        </h:inputText>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <c:ajax event="valueChange" render="errorEmail" execute="@this"  >
+                            <h:inputText pt:placeholder="arpit@example.com" id="e-mail" value="#{signUp.email}" 
+                                         validator="#{signUp.email_email_Validation}"
+                                         class="form-control col-xs-4 col-md-4"  >
+                                <c:validator validatorId="forumValidator"/>                            
+                            </h:inputText>
+                         <h:message for="e-mail" id="errorEmail" class="alert alert-warning"></h:message>
+                        </c:ajax>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h:inputSecret pt:placeholder="Password" value="#{signUp.password}" class="form-control" validatorMessage="password can't be empty">
+                            <c:validateRegex pattern="[a-zA-Z0-9]+"/>
+                            <c:validateLength minimum="4" maximum="8"/>
+                        </h:inputSecret>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h:inputText pt:placeholder="Phone" value="#{signUp.phone}" class="form-control" validatorMessage=" Phone field can't be empty">
+                            <c:validateRegex pattern="[0-9]+"/>
+                            <c:validateLength minimum="10" maximum="10"/>
+                        </h:inputText> 
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <h:commandButton value="Submit"  action="#{signUp.Insert}"                                          
+                                         class="btn btn-default" >
+                            <c:phaseListener type="EventHandlers.regPhaseListener" />
+                       </h:commandButton>   
+                        &nbsp;
+                        <h:outputText value="Already a mamber, ">                          
+                        </h:outputText> &nbsp;
+                        <h:link value="Go to Login" outcome="/login.xhtml"></h:link>
+                    </td>
+                    
+                </tr>
+            </table>
+               
+        </h:form>
+        </div>
+         </c:view>  
+    </h:body>
+    <ui:include src="template/common/footer.xhtml"/> 
+    
+</html>
+

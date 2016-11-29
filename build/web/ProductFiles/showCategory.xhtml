@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui" >
+    <h:head>
+        <title>Category</title>
+        <link href="../asset/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+    </h:head>
+    <h:body>
+        <ui:include src="../template/common/top-header.xhtml"/>
+        
+        <div class="container">
+            <div class="col-md-9">
+                <h:form id="showctgry">
+                    <p:dataTable value="#{showInfo.categoryList}" var="fatchedData"  rows="10"
+                                 paginator="true"
+                                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"                       
+                               
+                                 rowsPerPageTemplate="5,10,15"
+                                 style="width:80%">
+                        <c:facet name="header">Category List</c:facet>
+                        <p:column filterBy="#{fatchedData.id}">
+                            <c:facet name="header">                               
+                                <h:outputText value="Category Id"></h:outputText>
+                            </c:facet>  
+                            <p:cellEditor>
+                                <c:facet name="output">
+                                    <h:outputText style="display: block" value="#{fatchedData.id}"/>
+                                </c:facet>
+                                <c:facet name="input">
+                                    <h:inputText id="modelId" value="#{fatchedData.id}">
+                                    </h:inputText>
+                                </c:facet>
+                            </p:cellEditor>
+                        </p:column>
+                        <p:column filterBy="#{fatchedData.categoryName}">
+                            <c:facet name="header">
+                            <h:outputText value="Category name"></h:outputText>
+                            </c:facet>
+                            <p:cellEditor>
+                                <c:facet name="output">
+                                    <h:outputText style="display: block" value="#{fatchedData.categoryName}"/>
+                                </c:facet>
+                                <c:facet name="input">
+                                    <h:inputText value="#{fatchedData.categoryName}">
+                                    </h:inputText>
+                                </c:facet>
+                            </p:cellEditor>
+                        </p:column>
+                        <p:column>
+                            <c:facet name="header">
+                            <h:outputText value="Edit | Delete"></h:outputText>
+                            </c:facet>
+                            
+                            <h:commandLink action="#{categoryBean.updateCategory(fatchedData)}">                                
+                                <span class="glyphicon glyphicon-pencil"></span>
+                            </h:commandLink> &nbsp;&nbsp;|&nbsp;&nbsp;
+                            <h:commandLink action="#{categoryBean.deleteCategory(fatchedData)}" >
+                            <span class=" glyphicon glyphicon-trash"></span>
+                            </h:commandLink>
+                            <!--h:commandButton value="Save"></h:commandButton-->
+                        </p:column>
+                        
+                    </p:dataTable>
+                </h:form>
+            </div>
+            <div class="col-md-3" style="padding-top:10%;">
+                <h:link value="Dashboard" outcome="/index" class="btn btn-primary btn-lg btn-block"/>
+                <br/><br/><br/>
+                
+                <h:link value="Add Category" outcome="/ProductFiles/AddCategory" class="btn btn-primary btn-lg btn-block"/>
+                <br/><br/><br/>
+                <h:link value="View Product" outcome="/ProductFiles/showProduct" class="btn btn-primary btn-lg btn-block"/>
+                <br/>
+                <h:link value="Add Product" outcome="/ProductFiles/addProduct" class="btn btn-primary btn-lg btn-block"/>
+                <br/><br/>
+                
+            </div>
+        </div>
+        
+        <ui:include src="../template/common/footer.xhtml"/>                    
+    </h:body>
+</html>
+

@@ -1,0 +1,104 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Dashboard</title>
+        
+        <link href="asset/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+            <link href="asset/Style/style.css" rel="stylesheet" type="text/css"/>
+            <link href="asset/fonts/font-awesome-4.6.3/css/font-awesome.css" rel="stylesheet" type="text/css"/>
+             <style>
+                            
+            @font-face{
+                font-family:precious;
+                src: url('asset/Precious font/Precious.ttf') format("truetype")
+                }
+             #head{font-family: 'Precious',Copperplate Gothic Light;
+             color:#0818f3; font-weight:bold;}   
+        </style>
+    </h:head>
+    <h:body>
+       
+                    
+       <section>
+            <div class="block color-scheme-2">
+                <div class="container" >
+                    <div class="row">
+                         <div class="col-md-10">
+                            <article>                               
+                                <div class="row">
+                                    <div class="col-md-6 text-center" style="font-size: 140px;">
+                                        <i class="fa fa-dashboard"></i>
+                                    </div>
+                                    <div class="col-md-6" style="padding-top:50px;font-family: precious;">
+                                        <h1 class="color-active" id="head">Welcome To The Product Management Dashboard</h1>                                       
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                        <div class="col-md-6" style="text-align:justify;">
+                            <article class="deshboard-service wow fadeInLeft animated" data-wow-duration="1s" style="visibility: visible;-webkit-animation-duration: 1s; -moz-animation-duration: 1s; animation-duration: 1s;">
+                                <h:link outcome="/ProductFiles/addProduct"/>                               
+                                <div class="row">
+                                    <div class="col-md-4 text-center">
+                                        <i class="fa fa-pencil"></i>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <h3 class="color-active">Add Product</h3>
+                                        <p>Click to Add Product </p>
+                                </div>
+                                </div>
+                            </article>
+                        </div>
+                        <div class="col-md-6">
+                            <article class="deshboard-service wow fadeInUp animated" data-wow-duration="1s" style="visibility: visible;-webkit-animation-duration: 1s; -moz-animation-duration: 1s; animation-duration: 1s;">
+                                <h:link outcome="/ProductFiles/AddCategory"/>
+                                
+                                <div class="row">
+                                    <div class="col-md-4 text-center">
+                                        <i class="fa fa-pencil"></i>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <h3 class="color-active">Add Category</h3>
+                                        <p>Click to Add Category</p>
+                                    </div>
+                                </div>
+                             </article>
+                        </div>
+                         <div class="col-md-6">
+                            <article class="deshboard-service wow fadeInUp animated" data-wow-duration="1s" style="visibility: visible;-webkit-animation-duration: 1s; -moz-animation-duration: 1s; animation-duration: 1s;">
+                                <h:link outcome="/ProductFiles/showProduct"/>
+                                <div class="row">
+                                    <div class="col-md-4 text-center">
+                                        <i class="fa fa-table "></i>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <h3 class="color-active">View Product List</h3>
+                                        <p>Total Product(s)</p>#{total_data.toatal_Product}
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                        <div class="col-md-6">
+                            <article class="deshboard-service wow fadeInRight animated" data-wow-duration="1s" style="visibility: visible;-webkit-animation-duration: 1s; -moz-animation-duration: 1s; animation-duration: 1s;">
+                              <h:link outcome="/ProductFiles/showCategory"/>
+                                <div class="row">
+                                    <div class="col-md-4 text-center">
+                                        <i class="fa fa-database"></i>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <h3 class="color-active">View Category List</h3>
+                                        <p>Total Category(s) [<h:outputText value="#{showInfo.categoryCount}"/>]</p>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div style="margin-top: 10%;"></div>
+    </h:body>
+</html>
+

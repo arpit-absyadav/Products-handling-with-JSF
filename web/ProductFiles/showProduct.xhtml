@@ -1,0 +1,110 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui" >
+    <h:head>
+        <title>Category</title>
+        <link href="../asset/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <link href="../asset/fonts/font-awesome-4.6.3/css/font-awesome.css" rel="stylesheet" type="text/css"/>
+        
+        
+    </h:head>
+    <h:body>
+        <ui:include src="../template/common/top-header.xhtml"/>
+        
+        <div class="container">
+            
+            <div class="col-md-10">
+                <h:form id="showctgry">                    
+                    <p:dataTable id="list" value="#{showInfo.prodList}" var="fatchedData" rows="10"
+                                paginator="true"
+                                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"                       
+                               
+                                 rowsPerPageTemplate="5,10,15"
+                                 style="width:100%">
+                        <c:facet name="header">Product List</c:facet>
+                        <p:column  filterBy="#{fatchedData.prodId}">
+                            <c:facet name="header">
+                                <h:outputText  value="Product Id"></h:outputText>
+                            </c:facet>
+                            <h:outputText value="#{fatchedData.prodId}" />
+                        </p:column>
+                        <p:column filterBy="#{fatchedData.prodName}">
+                            <c:facet name="header">
+                            <h:outputText value="Product Name" ></h:outputText>
+                            </c:facet>
+                            <h:outputText value="#{fatchedData.prodName}"  />
+                        </p:column>
+                        <p:column filterBy="#{fatchedData.prodCategory}">
+                            <c:facet name="header">
+                            <h:outputText value=" Category"></h:outputText>
+                            </c:facet>
+                            <h:outputText value="#{fatchedData.prodCategory}"  />
+                        </p:column>
+                        <p:column style="width:22%;" >
+                            <c:facet name="header">
+                            <h:outputText value="Product Description"></h:outputText>
+                            </c:facet>
+                            <h:outputText value="#{fatchedData.prodDescription}" />
+                        </p:column>
+                        <p:column >
+                            <c:facet name="header">
+                            <h:outputText value="Price/Unit"></h:outputText>
+                            </c:facet>
+                            <h:outputText value="#{fatchedData.prodPrice}" >
+                                <c:convertNumber currencySymbol="₹" type="currency"/>
+                            </h:outputText>
+                        </p:column>
+                        <p:column >
+                            <c:facet name="header">
+                            <h:outputText value="Image"></h:outputText>
+                            </c:facet>
+                            <h:outputText value="#{fatchedData.image}"></h:outputText>
+                        </p:column>
+                        
+                        <p:column>
+                            <c:facet name="header">
+                            <h:outputText value="Update | Delete | View"></h:outputText>
+                            </c:facet>
+                            <h:commandLink>
+                                <span class="glyphicon glyphicon-pencil"></span>
+                            </h:commandLink> &nbsp;|&nbsp;
+                            <h:commandLink action="#{productBean.deleteProduct(fatchedData)}" >
+                            <span class=" glyphicon glyphicon-trash"></span>
+                            </h:commandLink>
+                            &nbsp;|&nbsp;
+                            <h:commandLink action="#{productBean.viewProduct(fatchedData)}">
+                            <span class="glyphicon glyphicon-eye-open"></span>
+                            <c:setPropertyActionListener target="#{feedback.product_id}" value="#{fatchedData.prodId}"/>
+                            </h:commandLink>
+                            
+                        </p:column>
+                    </p:dataTable>
+                            
+                </h:form>
+            </div>
+            <div class="col-md-2" style="padding-top:10%;">               
+                
+                
+                
+                <h:link value="Search Product" outcome="/ProductFiles/searchProdByCategory" class="btn btn-primary btn-lg btn-block"/>
+                <br/>
+                <h:link value="Add Product" outcome="/ProductFiles/addProduct" class="btn btn-primary btn-lg btn-block"/>
+                <br/><br/><br/>
+                <h:link value="View Category" outcome="/ProductFiles/showCategory" class="btn btn-primary btn-lg btn-block"/>
+                <br/>
+                <h:link value="Add Category" outcome="/ProductFiles/AddCategory" class="btn btn-primary btn-lg btn-block"/>
+                <br/><br/>
+                
+            </div>
+        </div>
+        
+        <ui:include src="../template/common/footer.xhtml"/>                    
+    </h:body>
+</html>
+
+
+                            

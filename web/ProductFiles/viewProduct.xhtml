@@ -1,0 +1,162 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:arpit="http://java.sun.com/jsf/composite/mycomp">
+    <h:head>
+        <title>Category</title>
+        <link href="../asset/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <link href="../asset/fonts/font-awesome-4.6.3/css/font-awesome.css" rel="stylesheet" type="text/css"/>
+        <link href="../asset/Style/feed_component.css" rel="stylesheet" type="text/css"/>
+        <link href="../asset/Style/feed_default.css" rel="stylesheet" type="text/css"/>
+        
+        
+        <script src="../asset/feed JS/modernizr.custom.js" type="text/javascript"></script>
+        <style>
+            th{text-align: center;}
+            thead{
+                text-align: center;
+                font-family:Copperplate Gothic Light;
+                font-size: 20px;                
+            }
+            body{
+                padding-bottom: 2%;
+                height: auto;
+                background-color: blanchedalmond;
+            }
+            .backPage span{
+                    color: #eb2c33;            
+                    font-size: 42px;                        
+                    -webkit-transition: all 0.3s ease;
+                    -moz-transition: all 0.3s ease;
+                    -o-transition: all 0.3s ease;
+                    -ms-transition: all 0.3s ease;
+                    transition: all 0.3s ease;
+                  }
+                  .backPage:hover span {
+                    color:#ffffff;       
+                    border-color: #eb2c33;
+                  }
+                 
+            
+        </style>
+    </h:head>
+    <h:body>
+        <ui:include src="../template/common/top-header.xhtml"/>
+        <div class="backPage" style="padding-left: 30px; padding-top: 5px; width:10px; ">
+             <h:link  outcome="/ProductFiles/showProduct.xhtml">
+                 <span class="fa fa-arrow-circle-o-left"></span>
+             </h:link>
+        </div>
+        <div class="container">            
+            <div class="col-md-7">
+                <table class="table table-bordered table-inverse">
+                    <thead>
+                        <th colspan="2">P   r  o  d  u  c  t      D  e  t  a  i  l  s</th>                        
+                    </thead>
+                    <tbody style="text-align: center">
+                        <tr>
+                            <th scope="row">Prod ID</th>
+                            <td>#{productBean.prodId}</td>
+                        </tr>
+                         <tr>
+                            <th scope="row">Prod Name</th>
+                            <td style="font-family:Copperplate Gothic Light; font-weight: bold; font-size: 18px; ">#{productBean.prodName}</td>
+                        </tr>
+                         <tr>
+                            <th scope="row">Prod Category</th>
+                            <td>#{productBean.prodCategory}</td>
+                        </tr>
+                         <tr>
+                            <th scope="row">Prod Description</th>
+                            <td>#{productBean.prodDescription}</td>
+                        </tr>
+                         <tr>
+                            <th scope="row">Prod Price</th>
+                            <td>₹ #{productBean.prodPrice}</td>
+                        </tr>
+                    </tbody>
+            </table>
+              
+            </div>
+            <div class="col-md-5">             
+                
+                <table class="table table-bordered table-inverse">
+                    <thead>
+                        <th colspan="2">P   r  o  d  u  c  t  -    I  m  a  g  e</th>                        
+                    </thead>
+                    <tbody style="align-content: center">
+                        <tr>                            
+                            <td>#{productBean.image}</td>
+                        </tr>
+                       
+                    </tbody>
+            </table>             
+            </div>
+        </div>
+     
+        <div class="container">
+            <div class="col-md-7">
+                <h:form>
+                    <p:fieldset style="height: 300px;" legend="We Value Your Feedback"   >                  
+                        <arpit:FdBack
+                            nameValue="#{feedback.user}"
+                            feedbackValue="#{feedback.feedback}"
+                            buttonText="Submit"
+                            buttonAction="#{feedback.prod_Feedback()}"   />
+                        <!--h:form>
+                            <h:inputText  value="#{feedback.user}" class="form-control" required="true" requiredMessage="Please Enter Your Name">
+                    <c:validateLength minimum="3" maximum="50"/>
+                </h:inputText><br/>
+                <h:inputTextarea  value="#{feedback.feedback}" class="form-control" required="true" requiredMessage="please Enter Feedback">
+                  <c:validateLength minimum="5" maximum="1900"/>
+                </h:inputTextarea><br/>
+                <h:commandButton  action="#{feedback.prod_Feedback()}" class="btn btn-default" value="Submit"/>
+                        </h:form-->
+                     
+                    
+                    </p:fieldset>                    
+                </h:form>
+            </div>
+            <div class="col-md-5">
+               <h:form>
+                         <p:fieldset style="height: 300px;" legend="Please rate this product"   >
+                    <p:rating  stars="5"/>                    
+                    </p:fieldset>                     
+                </h:form>
+          
+            </div>
+        </div>
+        <div class="container">
+            <h1 style="font-family:Copperplate Gothic Light; ">Feedback Timeline</h1>
+            <div class="main">
+                
+                <h:form id="timeline">
+                    <ui:repeat value="#{feedback.feed_list}" var="feed">
+                        <ul class="cbp_tmtimeline">
+                                    <li>
+                                        <time class="cbp_tmtime" datetime="2013-04-10 18:30"><span>#{feed.date}</span> <span>#{feed.time}</span></time>
+                                            <div class="cbp_tmicon cbp_tmicon-phone"></div>
+                                            <div class="cbp_tmlabel">
+                                                <h2 style="font-family:Copperplate Gothic Light;">#{feed.user}</h2>
+                                                <p>#{feed.feedback} </p>
+                                            </div>
+                                    </li>
+                    </ul>
+                    </ui:repeat>
+                    </h:form>
+               
+            </div>
+            
+        </div>
+        
+        
+        <ui:include src="../template/common/footer.xhtml"/>                    
+    </h:body>
+</html>
+
+
+                            
